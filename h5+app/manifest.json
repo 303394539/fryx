@@ -1,0 +1,88 @@
+{
+  "@platforms": ["android"],
+  "id": "H5BB9F0C7",
+  "name": "凡人有喜",
+  "version": {
+    "name": "1.0.0",
+    "code": "100"
+  },
+  "description": "",
+  "icons": {
+    "72": "icon.png"
+  },
+  "launch_path": "http://192.168.37.222:8000",
+  "developer": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "permissions": {
+    "Webview-x5": {},
+    "Runtime": {
+      "description": "运行环境"
+    },
+    "Webview": {
+      "description": "窗口管理"
+    }
+  },
+  "plus": {
+    "splashscreen": {
+      "autoclose": false,
+      "waiting": true
+    },
+    "popGesture": "none",
+    "runmode": "normal",
+    "cers": {
+      "crash": false
+    },
+    "launchwebview": {
+      "plusrequire": "ahead"
+    },
+    "distribute": {
+      "google": {
+        "packagename": "",
+        "keystore": "",
+        "password": "",
+        "aliasname": "",
+        "permissions": [],
+        "hardwareAccelerated": true
+      },
+      "orientation": [
+        "portrait-primary",
+        "portrait-secondary",
+        "landscape-primary",
+        "landscape-secondary"
+      ],
+      "icons": {
+        "android": {
+          "mdpi": "",
+          "ldpi": "",
+          "hdpi": "unpackage/res/icons/72x72.png",
+          "xhdpi": "unpackage/res/icons/96x96.png",
+          "xxhdpi": "unpackage/res/icons/144x144.png",
+          "xxxhdpi": "unpackage/res/icons/192x192.png"
+        }
+      },
+      "splashscreen": {
+        "android": {
+          "mdpi": "",
+          "ldpi": "",
+          "hdpi": "",
+          "xhdpi": "",
+          "xxhdpi": ""
+        }
+      },
+      "plugins": {
+        "push": {
+          "unipush": {}
+        },
+        "ad": {},
+        "speech": {}
+      },
+      "apple": {
+        "idfa": false
+      }
+    }
+  },
+  "screenOrientation": ["portrait-primary"]
+}

@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "ordinary-miai",
+  "scripts": {
+    "start": "yolk start",
+    "build": "yolk build",
+    "deploy": "npm run build && gh-pages -d build -r git@github.com:303394539/ordinary-miai.git"
+  },
+  "dependencies": {
+    "@baic/preset-yolk-mobile": "1.x",
+    "gh-pages": "~3.2.3"
+  }
+}

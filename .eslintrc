@@ -1,0 +1,6 @@
+{
+  "extends": "@baic/eslint-config-yolk-mobile-strict",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
