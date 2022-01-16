@@ -8,7 +8,24 @@
   flex-direction: column;
 
   .video {
-    width: 100%;
+    width: 0;
+    height: 0;
+  }
+
+  .next-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    font-size: 28px;
+    background-color: rgba(1, 1, 1, 0.8);
+    border-radius: 50%;
   }
 
   .list {
@@ -18,9 +35,10 @@
 
     .item {
       position: relative;
-      margin: 10px 10px 0 10px;
+      float: left;
+      width: 10%;
       overflow: hidden;
-      border-radius: 10px;
+      background-color: #000;
 
       .thumb {
         display: block;
@@ -29,16 +47,21 @@
 
       .content {
         position: absolute;
+        top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        padding: 6px 10px;
         background-color: rgba(1, 1, 1, 0.3);
 
         .title {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 10px 20px;
           color: #fff;
           font-weight: bold;
-          font-size: 16px;
+          font-size: 24px;
         }
       }
     }

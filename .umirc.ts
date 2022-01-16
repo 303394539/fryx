@@ -6,4 +6,7 @@ export default defineConfig({
   stylelint: true,
   strict: true,
   "h5+app": {},
+  rem: {
+    designWidth: 1920
+  }
 });

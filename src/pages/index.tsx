@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+// import { Toast } from 'antd-mobile';
+
 import { useRequest, useTitle } from '@baic/yolk';
 
 import { usePreload } from '@baic/yolk-mobile';
@@ -25,12 +27,12 @@ export default () => {
   useTitle('凡人有喜');
   const [request] = useRequest();
   const [list, setList] = React.useState<Item[]>([]);
-  const [selectedItem, setSelectedItem] = React.useState<Item>();
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const pageRef = React.useRef(0);
   const loadingRef = React.useRef(false);
   const getOnClickHandler = React.useCallback(
-    (item: Item) => () => {
-      setSelectedItem(item);
+    (index: number) => () => {
+      setSelectedIndex(index);
     },
     [],
   );
@@ -40,13 +42,14 @@ export default () => {
     const res: Response = await request.get(
       `https://rmtapi.cbg.cn/list/4908/${pageRef.current}.html`,
       {
-        pagesize: 10,
+        pagesize: 100,
       },
     );
-    setList(list?.concat(res.data.lists));
+    // setList(list?.concat(res.data.lists));
+    setList(res.data.lists);
     loadingRef.current = false;
     return res.data.lists;
-  }, [request, list]);
+  }, [request]);
   const onScrollHandler = React.useCallback(
     ({ target: { scrollHeight, scrollTop } }) => {
       if (!loadingRef.current && scrollHeight - scrollTop < 1000) {
@@ -55,28 +58,32 @@ export default () => {
     },
     [nextHandler],
   );
+  const selectItemMemo = React.useMemo(
+    () => list[selectedIndex] || {},
+    [list, selectedIndex],
+  );
   const [wrap] = usePreload(async () => {
-    const nextList: Item[] = await nextHandler();
-    setSelectedItem(nextList[0]);
+    await nextHandler();
   });
   return wrap(
     <div className={style.page}>
       <video
         className={style.video}
-        src={selectedItem?.videourl_hd || selectedItem?.videourl}
+        src={selectItemMemo?.videourl_hd || selectItemMemo?.videourl}
         controls
         controlsList="nodownload"
         autoPlay
         muted={process.env.NODE_ENV !== 'production'}
+        // onEnded={onEndedHandler}
       />
       <div className={style.list} onScroll={onScrollHandler}>
-        {list?.map((item) => {
+        {list?.map((item, i) => {
           const { thumb, title } = item;
           return (
             <div
               key={thumb}
               className={style.item}
-              onClick={getOnClickHandler(item)}
+              onClick={getOnClickHandler(i)}
             >
               <img className={style.thumb} src={thumb} alt="" />
               <div className={style.content}>
@@ -85,6 +92,9 @@ export default () => {
             </div>
           );
         })}
+      </div>
+      <div className={style.nextBtn} onClick={nextHandler}>
+        下一批
       </div>
     </div>,
   );
